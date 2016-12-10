@@ -27,17 +27,17 @@ Description of the project
 ### Installation
 
 ```bash
-xu@calypso:~$ git clone git@bitbucket.org:rutorika/beton-brut.git
-xu@calypso:~$ cd beton-brut/
+xu@calypso:~$ git clone https://github.com/grozwalker/mimiadmin.git
+xu@calypso:~$ cd mimiadmin/
 xu@calypso:~$ composer install                       # install project dependencies
 xu@calypso:~$ chmod a+rw storage -R                  # folder for logs, cache, etc
 xu@calypso:~$ chmod a+rw bootstrap/cache -R          # folder for laravel internal cache
 xu@calypso:~$ ln -sr storage/public public/storage   # link storage for uploaded files to public directory 
 
 # create database (you should change credentials)
-mysql> CREATE USER 'brut'@'localhost' IDENTIFIED BY 'brut';
-mysql> CREATE DATABASE brut;
-mysql> GRANT ALL PRIVILEGES ON brut . * TO 'brut'@'localhost';
+mysql> CREATE USER 'mimi'@'localhost' IDENTIFIED BY 'mimi';
+mysql> CREATE DATABASE mimi;
+mysql> GRANT ALL PRIVILEGES ON brut . * TO 'mimi'@'localhost';
 mysql> FLUSH PRIVILEGES;
 
 xu@calypso:~$ cp .env.example .env          # create enviroment config file
@@ -67,7 +67,7 @@ $user->save();
 
 ### Updating (both production and development)
 ```bash
-xu@calypso:~$ cd beton-brut/
+xu@calypso:~$ cd mimiadmin/
 xu@calypso:~$ git pull
 xu@calypso:~$ composer install              # install new project dependencies
 xu@calypso:~$ php artisan migrate           # run database migrations
@@ -75,7 +75,7 @@ xu@calypso:~$ php artisan migrate           # run database migrations
 
 ## Usage
 
-dashboard at `/dashboard`
+dashboard at `/admin`
 
 ## Development
 
