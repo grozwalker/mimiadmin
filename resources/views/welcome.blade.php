@@ -59,6 +59,23 @@
                 text-transform: uppercase;
             }
 
+            ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            li {
+                list-style-type: none;
+            }
+
+            .social {
+                margin-top: 50px;
+            }
+
+            .social__title {
+                margin-bottom: 20px;
+            }
+
         </style>
     </head>
     <body>
@@ -77,6 +94,18 @@
                 <div class="links">
                     Магазинчик милых вещей
                 </div>
+                <div class="social">
+                    <div class="social__title">
+                        Мы в социальных сетях:
+                    </div>
+                    <!-- /.social__title -->
+                    <ul class="social__links">
+                        <li><a href="http://vk.com/mimi_home_krd" target="_blank">vk.com/mimi_home_krd</a></li>
+                        <li><a href="instagram.com/_mimi_home_" target="_blank">http://instagram/_mimi_home_</a></li>
+                    </ul>
+                    <!-- /.social__links -->
+                </div>
+                <!-- /.social -->
             </div>
         </div>
     </body>
