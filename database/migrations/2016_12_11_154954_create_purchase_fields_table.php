@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderFieldsTable extends Migration
+class CreatePurchaseFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateOrderFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_fields', function (Blueprint $table) {
-            $table->integer('order_id')->unsigned();
+
+        Schema::create('purchase_fields', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('purchase_id')->unsigned();
             $table->integer('good_id')->unsigned();
-            $table->integer('quantity');
             $table->decimal('price', 5, 2);
+            $table->integer('quantity');
             $table->timestamps();
 
-            $table->index(['order_id', 'good_id']);
+            $table->index(['purchase_id', 'good_id']);
 
+            $table->foreign('purchase_id')->references('id')->on('purchases');
             $table->foreign('good_id')->references('id')->on('goods');
-            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 
@@ -34,6 +36,6 @@ class CreateOrderFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_fields');
+        Schema::dropIfExists('purchase_fields');
     }
 }

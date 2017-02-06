@@ -24,7 +24,6 @@ class CreatePurchasesTable extends Migration
             $table->date('buyer_protection');
             $table->timestamps();
 
-            $table->foreign('good_id')->references('id')->on('goods');
         });
     }
 

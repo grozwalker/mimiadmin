@@ -36,16 +36,24 @@ Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotP
 Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
 Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'admin'],
+    function () {
 
-    Route::get('/admin', ['as' => 'admin.index', 'uses' => 'Admin\AdminController@index']);
+    Route::get('/', ['as' => 'admin.index', 'uses' => 'Admin\AdminController@index']);
 
 //    Route::resource('/admin/goods', ['as' => 'admin.goods', 'uses' => 'Admin\GoodController@index']);
 
-    Route::resource('/admin/goods', 'Admin\GoodController', [
+    // Товары
+    Route::resource('/goods', 'Admin\GoodController', [
         'as' => 'admin.goods'
     ]);
 
+    // Закупки
+    Route::resource('/purchase', 'Admin\PurchaseController', [
+        'as' => 'admin.purchase'
+    ]);
 
 
 });
