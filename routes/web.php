@@ -50,6 +50,11 @@ Route::group([
         'as' => 'admin.goods'
     ]);
 
+    Route::get('goods/category/{category}', ['as' => 'goods.category', 'uses' => 'Admin\GoodController@showCategory']);
+    Route::post('goods/category/{category}', ['as' => 'goods.category.store', 'uses' => 'Admin\GoodController@store']);
+
+    Route::get('goods/category/{category}/create', ['as' => 'goods.category.create', 'uses' => 'Admin\GoodController@create']);
+
     // Закупки
     Route::resource('/purchase', 'Admin\PurchaseController', [
         'as' => 'admin.purchase'

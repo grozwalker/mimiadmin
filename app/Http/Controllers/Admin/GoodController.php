@@ -6,6 +6,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\Good;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class GoodController extends Controller
 {
@@ -16,9 +17,10 @@ class GoodController extends Controller
      */
     public function index()
     {
-        $goods = Good::with('category')->get();
+        $goods = Good::with('category')->paginate(20);
+        $categories = Category::all();
 
-        return view('admin.goods.index', compact('goods'));
+        return view('admin.goods.index', compact('goods', 'categories'));
     }
 
     /**
@@ -26,14 +28,14 @@ class GoodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($category_id = null)
     {
         $good = new Good();
 
         // Список всех родительских категорий для отображения в листе выбора
         $categories = Category::all()->pluck('name', 'id');
 
-        return view('admin.goods.view', compact('good', 'categories'));
+        return view('admin.goods.view', compact('good', 'categories', 'category_id'));
     }
 
     /**
@@ -42,9 +44,15 @@ class GoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $category_id = null)
     {
 
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'category_id' => 'required|numeric',
+            'price' => 'required|numeric',
+
+        ]);
 
         $good = new Good();
         $good->name = $request->name;
@@ -53,7 +61,29 @@ class GoodController extends Controller
         $good->active = $request->active;
         $good->save();
 
-        return redirect('admin/goods');
+        if ($request->file('img')){
+
+            $imageName = $good->id . '.' .
+                $request->file('img')->getClientOriginalExtension();
+
+            $bigImagePath = '/images/catalog/';
+            $previewImagePath = '/images/catalog/preview/';
+
+            $request->file('img')->move(base_path('public') . $bigImagePath, $imageName);
+
+            $good->img = $bigImagePath . $imageName;
+            $good->save();
+
+            Image::make(base_path('public') . $bigImagePath . $imageName)
+                ->heighten(150)
+                ->save(base_path('public') . $previewImagePath . $imageName);
+        }
+
+        if ($category_id) {
+            return redirect('admin/goods/category/' . $category_id);
+        } else {
+            return redirect('admin/goods');
+        }
     }
 
     /**
@@ -113,5 +143,16 @@ class GoodController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showCategory($id)
+    {
+        $goods = Good::with('category')
+            ->where('category_id', $id)
+            ->paginate(20);
+
+        $categories = Category::all();
+
+        return view('admin.goods.index', compact('goods', 'categories'));
     }
 }

@@ -4,9 +4,21 @@
 
     <h2>Добавить товар</h2>
 
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {!! Form::open([
-    'url' => 'admin/goods',
-    'class' => 'form-horizontal']) !!}
+    'url' =>  url()->previous(),
+    'class' => 'form-horizontal',
+    'method' => 'POST',
+    'files' => true]) !!}
 
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         {!! Form::label('name', 'Наименование', ['class' => 'col-sm-12'])  !!}
@@ -19,7 +31,7 @@
     <div class="form-group row {{ $errors->has('category_id') ? 'has-error' : '' }}">
         {!! Form::label('category_id', 'Выбирете категорию', ['class' => 'col-sm-12'])  !!}
         <div class="col-sm-12">
-            {!! Form::select('category_id', $categories, null, ['class' => 'form-control'])  !!}
+            {!! Form::select('category_id', $categories, $category_id, ['class' => 'form-control'])  !!}
             {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
@@ -37,6 +49,14 @@
         <div class="col-sm-12">
             {!! Form::text('vk_link', $good->vk_link, ['class' => 'form-control'])  !!}
             {!! $errors->first('vk_link', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('img') ? 'has-error' : '' }}">
+        {!! Form::label('img', 'Изображение', ['class' => 'col-sm-12 col-xs-12'])  !!}
+        <div class="col-sm-12 col-xs-12">
+            {!! Form::file('img', $good->img)  !!}
+            {!! $errors->first('img', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 
@@ -74,7 +94,7 @@
 
     <div class="form-group">
         <div class="col-sm-10">
-            <a class="btn btn-default btn-danger" href="{{ url('/admin/goods') }}">Отмена</a>
+            <a class="btn btn-default btn-danger" href="{{ url()->previous() }}">Отмена</a>
             <button type="submit" class="btn btn-success">Сохранить</button>
         </div>
     </div>
