@@ -13,7 +13,38 @@ class CategoryTableSeeder extends Seeder
     {
         DB::table('categories')->delete();
 
-        DB::table('categories')->insert([
+        $categories = [
+            'Брошки и значки' => 'broshi',
+            'Мужской альбом' => 'muzhskoy',
+            'Кружки' => 'kruzhki',
+            'Канцелярия' => 'kancelyariya',
+            'Термосы' => 'termosi',
+            'Кухня' => 'kuhnya',
+            'Star Wars' => 'star_wars',
+            'Кошельки' => 'koshelki',
+            'Утепляшки' => 'uteplyashki',
+            'Новый год' => 'noviy_god',
+            'Технические вещи' => 'technicheskiy_veshi',
+            'Супергеройское' => 'supergeroyskiye',
+            'Чайные штуки' => 'chaynie_shtuki',
+            'Поттериана' => 'potteriana',
+            'Чехлы' => 'chehli',
+            'Украшения' => 'ukrasheniya',
+            'Часы' => 'chasi',
+            'Уцененные товары' => 'ucenenniy_tovar',
+            'Сонное царство' => 'sonnoe_carstvo',
+            'Очки' => 'ochki',
+        ];
+
+        foreach ($categories as $name => $slug) {
+            DB::table('categories')->insert([
+                'name' => $name,
+                'parent_id' => '0',
+                'slug' => $slug,
+            ]);
+        }
+
+        /*DB::table('categories')->insert([
             'name' => 'Очки',
             'parent_id' => '0',
             'slug' => 'ochki'
@@ -251,6 +282,6 @@ class CategoryTableSeeder extends Seeder
             'name' => 'Заварнички',
             'parent_id' => '37',
             'slug' => 'zavarnichki'
-        ]);
+        ]);*/
     }
 }

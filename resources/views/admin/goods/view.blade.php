@@ -14,13 +14,14 @@
         </div>
     @endif
 
-    {!! Form::open([
-    'url' =>  url()->previous(),
+    {!! Form::model(
+    $good, [
+    'route' => $good->id ? ['goods.update', $good->id] : ['goods.store', $category_id],
     'class' => 'form-horizontal',
-    'method' => 'POST',
+    'method' => $good->id ? 'PUT' : 'POST',
     'files' => true]) !!}
 
-    <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+      <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         {!! Form::label('name', 'Наименование', ['class' => 'col-sm-12'])  !!}
         <div class="col-sm-12">
             {!! Form::text('name', $good->name, ['class' => 'form-control'])  !!}
@@ -55,7 +56,7 @@
     <div class="form-group {{ $errors->has('img') ? 'has-error' : '' }}">
         {!! Form::label('img', 'Изображение', ['class' => 'col-sm-12 col-xs-12'])  !!}
         <div class="col-sm-12 col-xs-12">
-            {!! Form::file('img', $good->img)  !!}
+            {!! Form::file('img', null)  !!}
             {!! $errors->first('img', '<p class="help-block">:message</p>') !!}
         </div>
     </div>

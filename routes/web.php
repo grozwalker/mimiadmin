@@ -20,7 +20,7 @@ Route::get('/', function () {
 // Login Routes...
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
 Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
-Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
 // Registration Routes...
 Route::get('register', ['as' => 'register', function() {
@@ -47,7 +47,11 @@ Route::group([
 
     // Товары
     Route::resource('/goods', 'Admin\GoodController', [
-        'as' => 'admin.goods'
+        'as' => 'admin.goods',
+        'names' => [
+            'update' => 'goods.update',
+            'store' => 'goods.store',
+        ]
     ]);
 
     Route::get('goods/category/{category}', ['as' => 'goods.category', 'uses' => 'Admin\GoodController@showCategory']);

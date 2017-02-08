@@ -57,8 +57,13 @@ class GoodController extends Controller
         $good = new Good();
         $good->name = $request->name;
         $good->category_id = $request->category_id;
+        $good->category_id = $request->category_id;
         $good->price = $request->price;
         $good->active = $request->active;
+        $good->have_photo = $request->have_photo;
+        $good->description = $request->description;
+        $good->vk_link = $request->vk_link;
+        $good->featured = $request->featured;
         $good->save();
 
         if ($request->file('img')){
@@ -79,8 +84,8 @@ class GoodController extends Controller
                 ->save(base_path('public') . $previewImagePath . $imageName);
         }
 
-        if ($category_id) {
-            return redirect('admin/goods/category/' . $category_id);
+        if ($request->category_id) {
+            return redirect('admin/goods/category/' . $request->category_id);
         } else {
             return redirect('admin/goods');
         }
@@ -103,15 +108,16 @@ class GoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $category_id = null)
     {
 
         $good = Good::where('id', $id)->first();
 
+
         // Список всех родительских категорий для отображения в листе выбора
         $categories = Category::all()->pluck('name', 'id');
 
-        return view('admin.goods.edit', compact('good', 'categories'));
+        return view('admin.goods.view', compact('good', 'categories', 'category_id'));
     }
 
     /**
@@ -123,12 +129,34 @@ class GoodController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $good = Good::where('id', $id)->first();
         $good->name = $request->name;
         $good->category_id = $request->category_id;
+        $good->category_id = $request->category_id;
         $good->price = $request->price;
-        //$good->description = $request->description;
         $good->active = $request->active;
+        $good->have_photo = $request->have_photo;
+        $good->description = $request->description;
+        $good->vk_link = $request->vk_link;
+        $good->featured = $request->featured;
+
+        if ($request->file('img')){
+
+            $imageName = $good->id . '.' .
+                $request->file('img')->getClientOriginalExtension();
+
+            $bigImagePath = '/images/catalog/';
+            $previewImagePath = '/images/catalog/preview/';
+
+            $request->file('img')->move(base_path('public') . $bigImagePath, $imageName);
+
+            $good->img = $bigImagePath . $imageName;
+
+            Image::make(base_path('public') . $bigImagePath . $imageName)
+                ->heighten(150)
+                ->save(base_path('public') . $previewImagePath . $imageName);
+        }
         $good->save();
 
         return redirect('admin/goods');
@@ -152,7 +180,9 @@ class GoodController extends Controller
             ->paginate(20);
 
         $categories = Category::all();
+        $category = Category::where('id', $id)
+                        ->first(['name']);
 
-        return view('admin.goods.index', compact('goods', 'categories'));
+        return view('admin.goods.index', compact('goods', 'categories', 'category'));
     }
 }

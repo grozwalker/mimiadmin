@@ -11,6 +11,10 @@
     </ul>
     <!-- /.category category_list -->
 
+    @if ( isset($category) )
+        <h2>Категория: {{ $category->name }}</h2>
+    @endif
+
     <a href="{{ Request::url() }}/create"><span class="glyphicon glyphicon-plus"></span> Добавить товар</a>
 
     <div class="table-responsive">
@@ -31,7 +35,13 @@
                 <tr>
                     <td>{{ $good->id }}</td>
                     <td>{{ $good->name }}</td>
-                    <td><img class="good_preview" src="/images/catalog/preview/{{ $good->id }}.jpg"></td>
+                    <td>
+                        @if ($good->img)
+                            <img class="good_preview" src="/images/catalog/preview/{{ $good->id }}.jpg">
+                        @else
+                            <img class="good_preview" src="/images/noimg.png">
+                        @endif
+                    </td>
                     <td>{{ $good->category->name }}</td>
                     <td>{{ $good->price }}</td>
                     <td>{{ $good->active }}</td>

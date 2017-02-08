@@ -14,6 +14,8 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="/css/bootstrap/bootstrap-table.css" rel="stylesheet">
+    <link href="/css/bootstrap/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap/navmenu-reveal.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
@@ -31,46 +33,31 @@
 
 <body>
 
-<div class="navbar navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Mimi Home</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Выйти</a></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
-        </div>
-    </div>
+<div class="navmenu navmenu-default navmenu-fixed-left">
+    <a class="navmenu-brand" href="#">Mimi Home</a>
+    @include('admin.partials.sidebar_menu')
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            @include('admin.partials.sidebar_menu')
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            @yield('content')
-        </div>
-
+<div class="canvas">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
     </div>
-</div>
 
+    <div class="container">
+        @yield('content')
+    </div><!-- /.container -->
+</div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/js/bootstrap/bootstrap.min.js"></script>
 <script src="/js/bootstrap/bootstrap-table.js"></script>
+<script src="/js/bootstrap/jasny-bootstrap.min.js"></script>
 <script src="/js/bootstrap/docs.min.js"></script>
 
 </body>

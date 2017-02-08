@@ -10,3 +10,7 @@
     display: inline-block;
     margin-right: 20px;
 }
+
+.good_preview {
+    max-height: 150px;
+}
