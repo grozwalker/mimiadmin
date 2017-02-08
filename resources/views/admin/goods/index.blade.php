@@ -39,7 +39,7 @@
                         @if ($good->img)
                             <img class="good_preview" src="/images/catalog/preview/{{ $good->id }}.jpg">
                         @else
-                            <img class="good_preview" src="/images/noimg.png">
+                            <img class="good_preview" src="/images/noImg.png">
                         @endif
                     </td>
                     <td>{{ $good->category->name }}</td>

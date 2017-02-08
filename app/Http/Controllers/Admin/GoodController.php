@@ -7,6 +7,7 @@ use App\Models\Admin\Good;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
+use File;
 
 class GoodController extends Controller
 {
@@ -73,6 +74,14 @@ class GoodController extends Controller
 
             $bigImagePath = '/images/catalog/';
             $previewImagePath = '/images/catalog/preview/';
+
+            if(!File::exists(public_path().'/'.$bigImagePath)) {
+                File::makeDirectory(public_path().'/'.$bigImagePath);
+            }
+
+            if(!File::exists(public_path().'/'.$previewImagePath)) {
+                File::makeDirectory(public_path().'/'.$previewImagePath);
+            }
 
             $request->file('img')->move(base_path('public') . $bigImagePath, $imageName);
 
@@ -152,6 +161,14 @@ class GoodController extends Controller
             $request->file('img')->move(base_path('public') . $bigImagePath, $imageName);
 
             $good->img = $bigImagePath . $imageName;
+
+            if(!File::exists(public_path().'/'.$bigImagePath)) {
+                File::makeDirectory(public_path().'/'.$bigImagePath);
+            }
+
+            if(!File::exists(public_path().'/'.$previewImagePath)) {
+                File::makeDirectory(public_path().'/'.$previewImagePath);
+            }
 
             Image::make(base_path('public') . $bigImagePath . $imageName)
                 ->heighten(150)
