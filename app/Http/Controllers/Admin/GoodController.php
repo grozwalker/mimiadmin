@@ -76,11 +76,11 @@ class GoodController extends Controller
             $previewImagePath = '/images/catalog/preview/';
 
             if(!File::exists(public_path().'/'.$bigImagePath)) {
-                File::makeDirectory(public_path().'/'.$bigImagePath);
+                File::makeDirectory(public_path().'/'.$bigImagePath, $mode = 0777, $recursive = false);
             }
 
             if(!File::exists(public_path().'/'.$previewImagePath)) {
-                File::makeDirectory(public_path().'/'.$previewImagePath);
+                File::makeDirectory(public_path().'/'.$previewImagePath, $mode = 0777, $recursive = false);
             }
 
             $request->file('img')->move(base_path('public') . $bigImagePath, $imageName);
