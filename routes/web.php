@@ -45,12 +45,24 @@ Route::group([
 
 //    Route::resource('/admin/goods', ['as' => 'admin.goods', 'uses' => 'Admin\GoodController@index']);
 
+    // Категории
+    Route::resource('/categories', 'Admin\CategoryController', [
+        'as' => 'admin.goods',
+        'names' => [
+            'index' => 'categories.index',
+            'update' => 'categories.update',
+            'store' => 'categories.store',
+            'destroy' => 'categories.destroy',
+        ]
+    ]);
+
     // Товары
     Route::resource('/goods', 'Admin\GoodController', [
         'as' => 'admin.goods',
         'names' => [
             'update' => 'goods.update',
             'store' => 'goods.store',
+            'destroy' => 'goods.destroy',
         ]
     ]);
 

@@ -28,6 +28,7 @@
                 <th>Цена</th>
                 <th>Активный</th>
                 <th style="width: 1%;">Просмотр</th>
+                <th>Удалить</th>
             </tr>
             </thead>
             <tbody>
@@ -45,7 +46,20 @@
                     <td>{{ $good->category->name }}</td>
                     <td>{{ $good->price }}</td>
                     <td>{{ $good->active }}</td>
-                    <td><a href="/admin/goods/{{ $good->id }}/edit"><span class="glyphicon glyphicon-search"></span></a></td>
+                    <td>
+                        <a class="btn btn-info" href="/admin/goods/{{ $good->id }}/edit">
+                            Просмотр <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </td>
+                    <td>
+                        {{ Form::open([ 'method'  => 'delete', 'route' => [ 'goods.destroy', $good->id ] ]) }}
+
+                        <button type="submit" id="delete-task-{{ $good->id }}" class="btn btn-danger">
+                            <i class="fa fa-btn fa-cloud"></i>Удалить
+                        </button>
+
+                        {{ Form::close() }}
+                    </td>
                 </tr>
             @endforeach
             </tbody>
