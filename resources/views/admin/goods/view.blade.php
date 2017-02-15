@@ -62,7 +62,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
-        {!! Form::label('price', 'Цена', ['class' => 'col-sm-1 col-xs-12'])  !!}
+        {!! Form::label('price', 'Цена продажи', ['class' => 'col-sm-1 col-xs-12'])  !!}
         <div class="col-sm-2 col-xs-12">
             {!! Form::number('price', $good->price, ['class' => 'form-control'])  !!}
             {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
@@ -103,3 +103,4 @@
     {!! Form::close() !!}
 
 @endsection
+

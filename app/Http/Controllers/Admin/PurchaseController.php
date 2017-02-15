@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admin\Category;
+use App\Models\Admin\Good;
 use App\Models\Admin\Purchase;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +29,22 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        $purchase = new Purchase();
+
+        $goods = Good::all()->pluck('name', 'id');
+
+        $categories = Category::with('goods')->get();
+
+        $goodsList = [];
+        foreach ($categories as $category){
+            foreach ($category->goods as $good){
+                $goodsList[$category->name][] = $good->name;
+            }
+        }
+
+        $good_id = null;
+
+        return view('admin.purchases.view', compact('purchase', 'goodsList', 'good_id'));
     }
 
     /**
@@ -38,7 +55,15 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Purchase::create($request->except('_token'));
+        /*$category = new Category();
+
+        $category->good_id = $request->good_id;
+
+        $category->save();*/
+
+        return redirect('admin/purchase');
     }
 
     /**

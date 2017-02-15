@@ -8,9 +8,14 @@
             <strong>Внимание!</strong> {{ $errors->first() }}
         </div>
     @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="table-responsive col-sm-6">
-        <a href="categories/create" class="text-left"><span class="glyphicon glyphicon-plus"></span> Добавить категорию</a>
+        <a href="/admin/categories/create" class="text-left"><span class="glyphicon glyphicon-plus"></span> Добавить категорию</a>
         <table class="table table-responsive table-hover">
             <thead>
             <tr>
@@ -43,7 +48,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="/categories/create"><span class="glyphicon glyphicon-plus"></span> Добавить категорию</a>
+        <a href="/admin/categories/create"><span class="glyphicon glyphicon-plus"></span> Добавить категорию</a>
     </div>
 
 @endsection

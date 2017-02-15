@@ -73,7 +73,12 @@ Route::group([
 
     // Закупки
     Route::resource('/purchase', 'Admin\PurchaseController', [
-        'as' => 'admin.purchase'
+        'as' => 'admin.purchase',
+        'names' => [
+            'update' => 'purchase.update',
+            'store' => 'purchase.store',
+            'destroy' => 'purchase.destroy',
+        ]
     ]);
 
 

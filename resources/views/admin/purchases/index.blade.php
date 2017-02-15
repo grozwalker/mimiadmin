@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-    <h1>Закупка</h1>
+    <h1>Закупки</h1>
 
     <div class="table-responsive">
         <table class="table table-responsive table-hover">
@@ -28,7 +28,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="/admin/goods/create"><span class="glyphicon glyphicon-plus"></span> Добавить товар</a>
+        <a href="/admin/purchase/create"><span class="glyphicon glyphicon-plus"></span> Добавить Закупку</a>
     </div>
 
 @endsection

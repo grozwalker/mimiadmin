@@ -20,6 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="/js/bootstrap/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -59,6 +60,9 @@
 <script src="/js/bootstrap/bootstrap-table.js"></script>
 <script src="/js/bootstrap/jasny-bootstrap.min.js"></script>
 <script src="/js/bootstrap/docs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+@yield('script')
 
 </body>
 </html>

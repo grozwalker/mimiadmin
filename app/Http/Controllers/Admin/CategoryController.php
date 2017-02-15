@@ -41,7 +41,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->except('_token'));
+
+        $categories = Category::all();
+
+        return redirect('admin/categories')->with('success', 'Категория успешно добавлена');
     }
 
     /**
@@ -84,9 +88,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        $categories = Category::all();
-
-        return redirect()->route('categories.index', ['categories']);
+        return redirect('admin/categories');
     }
 
     /**
