@@ -25,7 +25,7 @@
         <div class="form-group {{ $errors->has('good_id') ? 'has-error' : '' }}">
             {!! Form::label('good_id', 'Выбирете товар', ['class' => 'col-sm-12'])  !!}
             <div class="col-sm-12">
-                {!! Form::select('good_id', $goodsList, null, ['id' => 'good_id', 'class' => 'form-control'])  !!}
+                {!! Form::select('good_id', $goodsList, $good_id, ['id' => 'good_id', 'class' => 'form-control'])  !!}
                 {!! $errors->first('good_id', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="form-group{{ $errors->has('purchase_date') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->has('purchase_date') ? 'has-error' : '' }}">
             {!! Form::label('purchase_date', 'Дата закупки', ['class' => 'col-sm-12'])  !!}
             <div class="col-sm-12">
                 {!! Form::date('purchase_date', $purchase->purchase_date, ['class' => 'form-control'])  !!}
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="form-group{{ $errors->has('departure_date') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->has('departure_date') ? 'has-error' : '' }}">
             {!! Form::label('departure_date', 'Дата отправки', ['class' => 'col-sm-12'])  !!}
             <div class="col-sm-12">
                 {!! Form::date('departure_date', $purchase->departure_date, ['class' => 'form-control'])  !!}
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <div class="form-group{{ $errors->has('buyer_protection') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->has('buyer_protection') ? 'has-error' : '' }}">
             {!! Form::label('buyer_protection', 'Дата защиты покупателя', ['class' => 'col-sm-12'])  !!}
             <div class="col-sm-12">
                 {!! Form::date('buyer_protection', $purchase->buyer_protection, ['class' => 'form-control'])  !!}
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div class="form-group{{ $errors->has('arrival_date') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->has('arrival_date') ? 'has-error' : '' }}">
             {!! Form::label('arrival_date', 'Дата получения', ['class' => 'col-sm-12'])  !!}
             <div class="col-sm-12">
                 {!! Form::date('arrival_date', $purchase->buyer_protection, ['class' => 'form-control'])  !!}
@@ -86,6 +86,10 @@
         </div>
 
         {!! Form::close() !!}
+        <div class="col-sm-6">
+            <a href="{{ Request::url() }}/create"><span class="glyphicon glyphicon-plus"></span> Добавить товар</a>
+        </div>
+        <!-- /.col-sm-6 -->
     </div>
     <!-- /.row -->
 

@@ -15,4 +15,9 @@ class Good extends Model
     {
         return $this->belongsTo('App\Models\Admin\Category');
     }
+
+    public function purchases()
+    {
+        return $this->hasMany('App\Models\Admin\Purchase');
+    }
 }

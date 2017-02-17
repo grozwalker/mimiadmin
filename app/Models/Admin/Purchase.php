@@ -17,4 +17,9 @@ class Purchase extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function good()
+    {
+        return $this->belongsTo('App\Models\Admin\Good');
+    }
 }

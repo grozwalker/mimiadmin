@@ -17,7 +17,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $purchases = Purchase::all();
+        $purchases = Purchase::with('good')->get();
 
         return view('admin.purchases.index', compact('purchases'));
     }
@@ -31,16 +31,7 @@ class PurchaseController extends Controller
     {
         $purchase = new Purchase();
 
-        $goods = Good::all()->pluck('name', 'id');
-
-        $categories = Category::with('goods')->get();
-
-        $goodsList = [];
-        foreach ($categories as $category){
-            foreach ($category->goods as $good){
-                $goodsList[$category->name][] = $good->name;
-            }
-        }
+        $goodsList = $this->getGoodsList();
 
         $good_id = null;
 
@@ -55,15 +46,36 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'good_id' => 'required|integer',
+            'price' => 'required|Numeric',
+            'quantity' => 'required|integer',
+            'purchase_date' => 'required|date',
+        ]);
 
-        Purchase::create($request->except('_token'));
-        /*$category = new Category();
+        $purchase = new Purchase();
+        $purchase->good_id = $request->good_id;
+        $purchase->price = $request->price;
+        $purchase->quantity = $request->quantity;
+        $purchase->purchase_date = $request->purchase_date;
+        if ($request->departure_date != ""){
+            $purchase->departure_date = $request->departure_date;
+        }
+        if ($request->buyer_protection != ""){
+            $purchase->buyer_protection = $request->buyer_protection;
+        }
+        if ($request->arrival_date != ""){
+            $purchase->arrival_date = $request->arrival_date;
+        }
 
-        $category->good_id = $request->good_id;
 
-        $category->save();*/
+        if ($purchase->save()) {
+            return redirect('admin/purchase')->with('success', 'Закупка успешно добавлена');
+        } else {
+            return redirect('admin/purchase')->with('error', 'Произошла ошибка при добавлении закупкию Пожалуйста, попробуйте позже.');
+        }
 
-        return redirect('admin/purchase');
+
     }
 
     /**
@@ -83,10 +95,14 @@ class PurchaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Purchase $purchase)
     {
-        //
+        $goodsList = $this->getGoodsList();
+        $good_id = $purchase->good->id;
+
+        return view('admin.purchases.view', compact('purchase', 'goodsList', 'good_id'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -95,9 +111,34 @@ class PurchaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Purchase $purchase)
     {
-        //
+        $this->validate($request, [
+            'good_id' => 'required|integer',
+            'price' => 'required|Numeric',
+            'quantity' => 'required|integer',
+            'purchase_date' => 'required|date',
+        ]);
+
+        $purchase->good_id = $request->good_id;
+        $purchase->price = $request->price;
+        $purchase->quantity = $request->quantity;
+        $purchase->purchase_date = $request->purchase_date;
+        if ($request->departure_date != ""){
+            $purchase->departure_date = $request->departure_date;
+        }
+        if ($request->buyer_protection != ""){
+            $purchase->buyer_protection = $request->buyer_protection;
+        }
+        if ($request->arrival_date != ""){
+            $purchase->arrival_date = $request->arrival_date;
+        }
+
+        if ($purchase->save()) {
+            return redirect('admin/purchase')->with('success', 'Закупка успешно обновлен');
+        } else {
+            return redirect('admin/purchase')->with('error', 'Произошла ошибка при обновлении закупки. Пожалуйста, попробуйте позже');
+        }
     }
 
     /**
@@ -106,8 +147,35 @@ class PurchaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Purchase $purchase)
     {
-        //
+        if ($purchase->delete()) {
+            return redirect('admin/purchase')->with('success', 'Закупка успешно удалена');
+        } else {
+            return redirect('admin/purchase')->with('error', 'Произошла ошибка при удалении закупки. Пожалуйста, попробуйте позже');
+        }
+
+
+    }
+
+    /**
+     *
+     */
+    private function getGoodsList()
+    {
+
+        $categories = Category::with('goods')->get();
+
+        $goodsList = [];
+        foreach ($categories as $category){
+            foreach ($category->goods as $good){
+                $goodsList[$category->name][$good->id] = $good->name;
+            }
+        }
+
+
+        $goodsList = array_merge(["" => ""], $goodsList);
+
+        return $goodsList;
     }
 }
