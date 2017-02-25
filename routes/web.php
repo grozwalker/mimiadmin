@@ -81,5 +81,15 @@ Route::group([
         ]
     ]);
 
+    // Клиенты
+    Route::resource('/clients', 'Admin\ClientController', [
+        'as' => 'admin.clients',
+        'names' => [
+            'update' => 'clients.update',
+            'store' => 'clients.store',
+            'destroy' => 'clients.destroy',
+        ]
+    ]);
+
 
 });
