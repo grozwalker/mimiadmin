@@ -68,35 +68,40 @@
             {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
+    <div class="form-group">
+        <div class="funkyradio col-sm-2">
+            <div class="row">
+                <div class="funkyradio-primary {{ $errors->has('active') ? 'has-error' : '' }}">
+                    {!! Form::checkbox('active', 1, $good->active == 1 ? true : false, ['id' => 'active'])  !!}
+                    {!! Form::label('active', 'Активный', ['class' => 'col-sm-1 col-xs-12'])  !!}
+                    {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
+                </div>
 
-    <div class="form-group {{ $errors->has('active') ? 'has-error' : '' }}">
-        {!! Form::label('active', 'Активный', ['class' => 'col-sm-1 col-xs-12'])  !!}
-        <div class="col-sm-2 col-xs-12">
-            {!! Form::checkbox('active', $good->active, ['class' => 'form-control'])  !!}
-            {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
+                <div class="funkyradio-primary {{ $errors->has('have_photo') ? 'has-error' : '' }}">
+                    {!! Form::checkbox('have_photo', 1,  $good->have_photo == 1 ? true : false, ['id' => 'have_photo'])  !!}
+                    {!! Form::label('have_photo', 'Фото', ['class' => 'col-sm-1 col-xs-12'])  !!}
+                    {!! $errors->first('have_photo', '<p class="help-block">:message</p>') !!}
+                </div>
 
-    <div class="form-group {{ $errors->has('have_photo') ? 'has-error' : '' }}">
-        {!! Form::label('have_photo', 'Фото', ['class' => 'col-sm-1 col-xs-12'])  !!}
-        <div class="col-sm-2 col-xs-12">
-            {!! Form::checkbox('have_photo', $good->have_photo, ['class' => 'form-control'])  !!}
-            {!! $errors->first('have_photo', '<p class="help-block">:message</p>') !!}
+                <div class="funkyradio-primary {{ $errors->has('featured') ? 'has-error' : '' }}">
+                    {!! Form::checkbox('featured', 1, $good->featured == 1 ? 1 : 0, ['id' => 'featured'])  !!}
+                    {!! Form::label('featured', 'Хитяо', ['class' => 'col-sm-1 col-xs-12'])  !!}
+                    {!! $errors->first('featured', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+            <!-- /.funkyradio -->
         </div>
+        <!-- /.row -->
     </div>
-
-    <div class="form-group {{ $errors->has('featured') ? 'has-error' : '' }}">
-        {!! Form::label('featured', 'Хитяо', ['class' => 'col-sm-1 col-xs-12'])  !!}
-        <div class="col-sm-2 col-xs-12">
-            {!! Form::checkbox('featured', $good->featured, ['class' => 'form-control'])  !!}
-            {!! $errors->first('featured', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
+    <!-- /.fankygroup -->
 
     <div class="form-group">
         <div class="col-sm-10">
-            <a class="btn btn-default btn-danger" href="{{ url()->previous() }}">Отмена</a>
-            <button type="submit" class="btn btn-success">Сохранить</button>
+            <div class="row">
+                <a class="btn btn-default btn-danger" href="{{ url()->previous() }}">Отмена</a>
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+            <!-- /.row -->
         </div>
     </div>
 

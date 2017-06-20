@@ -2,15 +2,23 @@
 
 @section('content')
     <h1 class="page-header">Товары</h1>
-
-    <ul class="category-list list-unstyled">
-        @foreach($categories as $categorie)
-            <li class="category-list_item"><a href="{{ route('goods.category', $categorie->id) }}">{{ $categorie->name }}</a></li>
-            <!-- /.category category_item -->
-        @endforeach
-    </ul>
-    <!-- /.category category_list -->
-
+    <div class="row category-list ">
+        <div class="col-sm-12">
+            <ul class="list-unstyled">
+                @foreach($categories as $categorie)
+                    <li class="category-list_item"><a href="{{ route('goods.category', $categorie->id) }}">{{ $categorie->name }}</a></li>
+                    <!-- /.category category_item -->
+                @endforeach
+            </ul>
+            <!-- /.category category_list -->
+        </div>
+        <!-- /.col-sm-12 -->
+        <div class="col-sm-12">
+            <a href="{{ route('goods.index') }}">Все</a>
+        </div>
+        <!-- /.col-sm-12 -->
+    </div>
+    <!-- /.row -->
     @if ( isset($category) )
         <h2>Категория: {{ $category->name }}</h2>
     @endif

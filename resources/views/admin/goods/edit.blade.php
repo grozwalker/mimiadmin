@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h2>Изменить товар</h2>
+    <h2>Изменить товар!</h2>
 
     {!! Form::open([
     'url' => 'admin/goods/'.$good->id,
@@ -55,11 +55,10 @@
     </div>
     -->
 
-
     <div class="form-group {{ $errors->has('active') ? 'has-error' : '' }}">
         {!! Form::label('active', 'Активный', ['class' => 'col-sm-1'])  !!}
         <div class="col-sm-12">
-            {!! Form::checkbox('active', $good->active, ['class' => 'form-control'])  !!}
+            {!! Form::checkbox('active', 1, $good->active == 1 ? true : false, ['class' => 'form-control'])  !!}
             {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
         </div>
     </div>

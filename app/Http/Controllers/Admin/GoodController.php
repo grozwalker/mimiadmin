@@ -19,6 +19,7 @@ class GoodController extends Controller
     public function index()
     {
         $goods = Good::with('category')->paginate(20);
+
         $categories = Category::all();
 
         return view('admin.goods.index', compact('goods', 'categories'));
@@ -138,13 +139,12 @@ class GoodController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $good = Good::where('id', $id)->first();
         $good->name = $request->name;
         $good->category_id = $request->category_id;
         $good->category_id = $request->category_id;
         $good->price = $request->price;
-        $good->active = $request->active;
+        $good->active = $request->active == 1 ? true : false;;
         $good->have_photo = $request->have_photo;
         $good->description = $request->description;
         $good->vk_link = $request->vk_link;

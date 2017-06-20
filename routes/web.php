@@ -60,6 +60,7 @@ Route::group([
     Route::resource('/goods', 'Admin\GoodController', [
         'as' => 'admin.goods',
         'names' => [
+            'index' => 'goods.index',
             'update' => 'goods.update',
             'store' => 'goods.store',
             'destroy' => 'goods.destroy',
@@ -85,9 +86,20 @@ Route::group([
     Route::resource('/clients', 'Admin\ClientController', [
         'as' => 'admin.clients',
         'names' => [
+            'create' => 'clients.create',
             'update' => 'clients.update',
             'store' => 'clients.store',
             'destroy' => 'clients.destroy',
+        ]
+    ]);
+
+    // Заказы
+    Route::resource('/orders', 'Admin\OrderController', [
+        'as' => 'admin.orders',
+        'names' => [
+            'update' => 'orders.update',
+            'store' => 'orders.store',
+            'destroy' => 'orders.destroy',
         ]
     ]);
 
