@@ -61,6 +61,14 @@
             </div>
         </div>
 
+        <div class="form-group {{ $errors->has('birthday') ? 'has-error' : '' }}">
+            {!! Form::label('birthday', 'Дата рождения', ['class' => 'col-sm-12'])  !!}
+            <div class="col-sm-12">
+                {!! Form::date('birthday', $client->birthday, ['class' => 'form-control'])  !!}
+                {!! $errors->first('birthday', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
         <div class="form-group {{ $errors->has('adress') ? 'has-error' : '' }}">
             {!! Form::label('adress', 'Адрес проживания', ['class' => 'col-sm-12'])  !!}
             <div class="col-sm-12">
@@ -76,6 +84,18 @@
                 {!! $errors->first('note', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
+        <div class="form-group">
+            <div class="funkyradio col-sm-4">
+                <div class="funkyradio-primary {{ $errors->has('pk') ? 'has-error' : '' }}">
+                    {!! Form::checkbox('pk', 1, $client->pk == 1 ? true : false, ['id' => 'pk'])  !!}
+                    {!! Form::label('pk', 'Постоянник', ['class' => 'col-sm-1 col-xs-12'])  !!}
+                    {!! $errors->first('pk', '<p class="help-block">:message</p>') !!}
+                </div>
+                <!-- /.funkyradio -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.fankygroup -->
 
         <div class="form-group">
             <div class="col-sm-10">
