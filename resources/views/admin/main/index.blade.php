@@ -17,7 +17,7 @@
                     <tbody>
                     @foreach($birthClients as $client)
                         <tr>
-                            <td>{{ $client->name }}</td>
+                            <td>{{ $client->name }} {{ $client->surname }}</td>
                             <td>{{ $client->phone }}</td>
                             <td>{{ $client->pk }}</td>
                         </tr>
