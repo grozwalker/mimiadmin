@@ -42,7 +42,7 @@ class ClientController extends Controller
     {
         $this->validate($request,[
             'link' => 'url',
-            'phone' => 'required|regex:/(79)[0-9]{9}/'
+            'phone' => 'regex:/(79)[0-9]{9}/'
         ]);
 
         if ( Client::create($request->except('_token')) ) {
@@ -85,6 +85,11 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+        $this->validate($request,[
+            'link' => 'url',
+            'phone' => 'regex:/(79)[0-9]{9}/'
+        ]);
+
 
         if ( $client->update($request->except('_token')) ) {
             return redirect('admin/clients')->with('success', 'Клиент успешно обновлен');

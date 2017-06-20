@@ -56,6 +56,12 @@ Route::group([
         ]
     ]);
 
+    // Показываем все товары (активные + неактивные)
+    Route::get('goods/nonactive', [
+        'as' => 'goods.nonactive',
+        'uses' => 'Admin\GoodController@showNonActive'
+    ]);
+
     // Товары
     Route::resource('/goods', 'Admin\GoodController', [
         'as' => 'admin.goods',
@@ -66,6 +72,8 @@ Route::group([
             'destroy' => 'goods.destroy',
         ]
     ]);
+
+
 
     Route::get('goods/category/{category}', ['as' => 'goods.category', 'uses' => 'Admin\GoodController@showCategory']);
     Route::post('goods/category/{category}', ['as' => 'goods.category.store', 'uses' => 'Admin\GoodController@store']);

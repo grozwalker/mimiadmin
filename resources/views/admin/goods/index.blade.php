@@ -2,6 +2,15 @@
 
 @section('content')
     <h1 class="page-header">Товары</h1>
+    <div class="row active-goods">
+        <div class="col-sm-12">
+            <a href="{{ route('goods.index') }}" class="btn {{ Route::getCurrentRoute()->getName() == 'goods.index' ? 'btn-success' : 'btn-info' }} all-goods">Активные</a>
+            <a href="{{ route('goods.nonactive') }}" class="btn {{ Route::getCurrentRoute()->getName() == 'goods.nonactive' ? 'btn-success' : 'btn-info' }} nonactive-goods">Неактивные</a>
+            <!-- /.all-goods -->
+        </div>
+        <!-- /.col-sm-12 -->
+    </div>
+    <!-- /.row -->
     <div class="row category-list ">
         <div class="col-sm-12">
             <ul class="list-unstyled">

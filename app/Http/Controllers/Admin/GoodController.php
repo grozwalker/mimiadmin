@@ -18,7 +18,9 @@ class GoodController extends Controller
      */
     public function index()
     {
-        $goods = Good::with('category')->paginate(20);
+        $goods = Good::with('category')
+            ->active()
+            ->paginate(20);
 
         $categories = Category::all();
 
@@ -61,11 +63,11 @@ class GoodController extends Controller
         $good->category_id = $request->category_id;
         $good->category_id = $request->category_id;
         $good->price = $request->price;
-        $good->active = $request->active;
-        $good->have_photo = $request->have_photo;
+        $good->active = $request->active == 1 ? true : false;;
+        $good->have_photo = $request->have_photo == 1 ? true : false;;
         $good->description = $request->description;
         $good->vk_link = $request->vk_link;
-        $good->featured = $request->featured;
+        $good->featured = $request->featured == 1 ? true : false;;
         $good->save();
 
         if ($request->file('img')){
@@ -144,11 +146,11 @@ class GoodController extends Controller
         $good->category_id = $request->category_id;
         $good->category_id = $request->category_id;
         $good->price = $request->price;
-        $good->active = $request->active == 1 ? true : false;;
-        $good->have_photo = $request->have_photo;
+        $good->active = $request->active == 1 ? true : false;
+        $good->have_photo = $request->have_photo == 1 ? true : false;
         $good->description = $request->description;
         $good->vk_link = $request->vk_link;
-        $good->featured = $request->featured;
+        $good->featured = $request->featured == 1 ? true : false;
 
         if ($request->file('img')){
 
@@ -190,10 +192,16 @@ class GoodController extends Controller
         //
     }
 
+    /**
+     * Выводим список товаров конкретной категории
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showCategory($id)
     {
         $goods = Good::with('category')
             ->where('category_id', $id)
+            ->active()
             ->paginate(20);
 
         $categories = Category::all();
@@ -201,5 +209,20 @@ class GoodController extends Controller
                         ->first(['name']);
 
         return view('admin.goods.index', compact('goods', 'categories', 'category'));
+    }
+
+    /**
+     * Выводим список всех неактивных товаров
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showNonActive(){
+
+        $goods = Good::with('category')
+            ->nonActive()
+            ->paginate(20);
+
+        $categories = Category::all();
+
+        return view('admin.goods.index', compact('goods', 'categories'));
     }
 }

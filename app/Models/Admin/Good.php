@@ -20,4 +20,24 @@ class Good extends Model
     {
         return $this->hasMany('App\Models\Admin\Purchase');
     }
+
+    /**
+     * Возвращаем все активные товары
+     * @param $query
+     * @return mixed
+     *
+     */
+    public function scopeActive($query){
+        return $query->where('active', 1);
+    }
+
+    /**
+     * Возвращаем все НЕактивные товары
+     * @param $query
+     * @return mixed
+     *
+     */
+    public function scopeNonActive($query){
+        return $query->where('active', 0);
+    }
 }

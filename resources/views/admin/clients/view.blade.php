@@ -61,6 +61,22 @@
             </div>
         </div>
 
+        <div class="form-group {{ $errors->has('adress') ? 'has-error' : '' }}">
+            {!! Form::label('adress', 'Адрес проживания', ['class' => 'col-sm-12'])  !!}
+            <div class="col-sm-12">
+                {!! Form::text('adress', $client->adress, ['class' => 'form-control'])  !!}
+                {!! $errors->first('adress', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
+        <div class="form-group {{ $errors->has('note') ? 'has-error' : '' }}">
+            {!! Form::label('note', 'Примечание', ['class' => 'col-sm-12'])  !!}
+            <div class="col-sm-12">
+                {!! Form::textarea('note', $client->note, ['class' => 'form-control'])  !!}
+                {!! $errors->first('note', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-sm-10">
                 <a class="btn btn-default btn-danger" href="{{ url()->previous() }}">Отмена</a>
