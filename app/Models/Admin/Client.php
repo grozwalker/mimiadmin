@@ -29,7 +29,8 @@ class Client extends Model
      * @return mixed
      */
     public function scopeHaveBirthday($query){
-        return $query->where('birthday', Carbon::now()->format('Y.m.d'));
+        return $query->whereDay('birthday', Carbon::now()->day)
+            ->whereMonth('birthday', Carbon::now()->month);
     }
 
 }
