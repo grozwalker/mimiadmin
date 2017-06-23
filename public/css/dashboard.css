@@ -18,6 +18,17 @@
   overflow: auto;
 }
 
+.table_type_clients tbody>tr>td {
+  vertical-align: middle;
+}
+
+.client_pk {
+  /*background-color: #1e9913;*/
+  border-left: 5px solid #1e9913;
+}
+
+
+
 /*
  * Sidebar
  */

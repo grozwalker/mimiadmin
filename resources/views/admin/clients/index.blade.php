@@ -17,7 +17,7 @@
 
     <div class="table-responsive col-sm-12">
         <a href="/admin/clients/create" class="text-left"><span class="glyphicon glyphicon-plus"></span> Добавить клиента</a>
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-hover table_type_clients">
             <thead>
             <tr>
                 <th style="width: 2%;">№</th>
@@ -27,11 +27,12 @@
                 <th>Телефон</th>
                 <th style="width: 1%;">Просмотр</th>
                 <th style="">Удалить</th>
+                <th>ПК</th>
             </tr>
             </thead>
             <tbody>
             @foreach($clients as $client)
-                <tr>
+                <tr  @if ($client->pk == 1) class="client_pk" @endif  >
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $client->name }}</td>
                     <td>{{ $client->surname }}</td>
@@ -51,11 +52,14 @@
 
                         {{ Form::close() }}
                     </td>
+                    <td>
+
+                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         <a href="{{ route('clients.create') }}"><span class="glyphicon glyphicon-plus"></span> Добавить клиента</a>
     </div>
-    {{ $clients->links() }}
+
 @endsection
