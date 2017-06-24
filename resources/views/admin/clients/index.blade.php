@@ -25,9 +25,9 @@
                 <th>Фамилия</th>
                 <th>Ссылка</th>
                 <th>Телефон</th>
+                <th>Место заказа</th>
                 <th style="width: 1%;">Просмотр</th>
                 <th style="">Удалить</th>
-                <th>ПК</th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +38,11 @@
                     <td>{{ $client->surname }}</td>
                     <td>{{ $client->link }}</td>
                     <td>{{ $client->phone }}</td>
+                    <td>
+                        @if (count($client->wherefrom))
+                            {{ $client->wherefrom->name }}
+                        @endif
+                    </td>
                     <td>
                         <a class="btn btn-info" href="/admin/clients/{{ $client->id }}/edit">
                             Просмотр <span class="glyphicon glyphicon-search"></span>
@@ -52,14 +57,11 @@
 
                         {{ Form::close() }}
                     </td>
-                    <td>
-
-                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         <a href="{{ route('clients.create') }}"><span class="glyphicon glyphicon-plus"></span> Добавить клиента</a>
     </div>
-
+    {{ $clients->links() }}
 @endsection

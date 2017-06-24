@@ -97,6 +97,14 @@
         </div>
         <!-- /.fankygroup -->
 
+        <div class="form-group row {{ $errors->has('wherefrom_id') ? 'has-error' : '' }}">
+            {!! Form::label('wherefrom_id', 'Откуда пришел клиент', ['class' => 'col-sm-12'])  !!}
+            <div class="col-sm-12">
+                {!! Form::select('wherefrom_id', $whereFromClients, null, ['class' => 'form-control'])  !!}
+                {!! $errors->first('wherefrom_id', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-sm-10">
                 <a class="btn btn-default btn-danger" href="{{ url()->previous() }}">Отмена</a>

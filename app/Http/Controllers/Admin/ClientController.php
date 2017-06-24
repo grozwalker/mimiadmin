@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin\Client;
+use App\Models\Admin\WhereFromClients;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::orderBy('name', 'asc')->paginate(20);
+        $clients = Client::with('wherefrom')->orderBy('name', 'asc')->paginate(20);
 
         return view('admin.clients.index', compact('clients'));
     }
@@ -28,8 +29,9 @@ class ClientController extends Controller
     public function create()
     {
         $client = new Client();
+        $whereFromClients = WhereFromClients::all()->pluck('name', 'id');;
 
-        return view('admin.clients.view', compact('client'));
+        return view('admin.clients.view', compact('client', 'whereFromClients'));
     }
 
     /**
@@ -73,7 +75,9 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('admin.clients.view', compact('client'));
+        $whereFromClients = WhereFromClients::all()->pluck('name', 'id');;
+
+        return view('admin.clients.view', compact('client', 'whereFromClients'));
     }
 
     /**

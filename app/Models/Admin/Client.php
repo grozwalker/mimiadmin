@@ -15,12 +15,21 @@ class Client extends Model
         'adress',
         'note',
         'birthday',
-        'pk'
+        'pk',
+        'wherefrom_id'
     ];
 
     public function orders()
     {
         return $this->hasMany('App\Models\Admin\Order');
+    }
+
+    /**
+     * Get the category which good belongs to
+     */
+    public function wherefrom()
+    {
+        return $this->belongsTo('App\Models\Admin\WhereFromClients');
     }
 
     /**
