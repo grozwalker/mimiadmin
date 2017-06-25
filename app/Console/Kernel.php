@@ -26,6 +26,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $date = Carbon::now()->toW3cString();
+        $environment = env('APP_ENV');
+        $schedule->command(
+            "db:backup --database=mysql --destination=s3 --destinationPath=/{$environment}/projectname_{$environment}_{$date} --compression=gzip"
+        )->dailyAt('23:00');
     }
 
     /**

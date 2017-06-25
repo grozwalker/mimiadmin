@@ -181,6 +181,7 @@ return [
         // User
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        BackupManager\Laravel\Laravel5ServiceProvider::class,
 
         //Debug
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
