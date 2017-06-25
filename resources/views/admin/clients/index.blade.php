@@ -33,7 +33,7 @@
             <tbody>
             @foreach($clients as $client)
                 <tr  @if ($client->pk == 1) class="client_pk" @endif  >
-                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ ($clients->currentPage() - 1)*$clients->perPage() + $loop->index + 1 }} </td>
                     <td>{{ $client->name }}</td>
                     <td>{{ $client->surname }}</td>
                     <td>{{ $client->link }}</td>
