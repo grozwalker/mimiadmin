@@ -101,7 +101,7 @@
             </div>
             <!-- /.purchase-price -->
 
-            <a class="btn btn-default btn-info purchase__link" href="{{ $purchase->link }}" @if( !$purchase->link ) style="display: none" @endif >Открыть товар</a>
+            <a class="btn btn-default btn-info purchase__link" href="{{ $purchase->link }}" target="_blank" @if( !$purchase->link ) style="display: none" @endif >Открыть товар</a>
 
         </div>
         <!-- /.col-sm-6 -->
