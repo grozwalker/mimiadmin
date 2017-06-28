@@ -101,9 +101,8 @@
             </div>
             <!-- /.purchase-price -->
 
-            @if ($purchase->link)
-                <a class="btn btn-default btn-info purchase__link" href="{{ $purchase->link }}">Открыть товар</a>
-            @endif
+            <a class="btn btn-default btn-info purchase__link" href="{{ $purchase->link }}" @if( !$purchase->link ) style="display: none" @endif >Открыть товар</a>
+
         </div>
         <!-- /.col-sm-6 -->
     </div>
@@ -119,6 +118,11 @@
         $('#quantity, #price').change(function() {
             var sum = $('#quantity').val() * $('#price').val();
             $('.purchase-price span').html(sum);
+        });
+
+        $('#link').change(function() {
+            $('.purchase__link').attr('href', $('#link').val());
+            $('.purchase__link').show();
         });
     </script>
 @endsection
