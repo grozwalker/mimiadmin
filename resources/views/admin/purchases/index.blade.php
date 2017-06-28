@@ -19,10 +19,10 @@
             <thead>
             <tr>
                 <th style="width: 2%;">№</th>
+                <th>Дата закупки</th>
                 <th>Товар</th>
                 <th>Количество</th>
                 <th>Цена закупки</th>
-                <th>Дата закупки</th>
                 <th>Дата отправки</th>
                 <th>Защита покупателя</th>
                 <th>Дата прихода</th>
@@ -34,14 +34,16 @@
             @foreach($purchases as $purchase)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ $purchase->purchase_date }}</td>
                     <td>{{ $purchase->good->name }}</td>
                     <td>{{ $purchase->quantity }}</td>
                     <td>{{ $purchase->price }}</td>
-                    <td>{{ $purchase->purchase_date }}</td>
                     <td>{{ $purchase->departure_date }}</td>
                     <td>{{ $purchase->buyer_protection }}</td>
                     <td>{{ $purchase->arrival_date }}</td>
-                    <td><a href="/admin/purchase/{{ $purchase->id }}/edit"><span class="glyphicon glyphicon-search"></span></a></td>
+                    <td><a href="/admin/purchase/{{ $purchase->id }}/edit">
+                            Просмотр <span class="glyphicon glyphicon-search"></span>
+                        </a></td>
                     <td>
 
                         {{ Form::open([ 'method'  => 'delete', 'route' => [ 'purchase.destroy', $purchase->id ] ]) }}

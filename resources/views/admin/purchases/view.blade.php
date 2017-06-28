@@ -33,7 +33,7 @@
         <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
             {!! Form::label('price', 'Цена закупки', ['class' => 'col-sm-12 col-xs-12'])  !!}
             <div class="col-sm-12 col-xs-12">
-                {!! Form::number('price', $purchase->price, ['class' => 'form-control'])  !!}
+                {!! Form::number('price', $purchase->price, ['class' => 'form-control', 'step' => 'any', 'min' => 0])  !!}
                 {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -43,6 +43,14 @@
             <div class="col-sm-12 col-xs-12">
                 {!! Form::number('quantity', $purchase->quantity, ['class' => 'form-control'])  !!}
                 {!! $errors->first('quantity', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
+        <div class="form-group {{ $errors->has('link') ? 'has-error' : '' }}">
+            {!! Form::label('link', 'Ссылка на товар', ['class' => 'col-sm-12 col-xs-12'])  !!}
+            <div class="col-sm-12 col-xs-12">
+                {!! Form::text('link', $purchase->link, ['class' => 'form-control'])  !!}
+                {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
 
@@ -88,6 +96,14 @@
         {!! Form::close() !!}
         <div class="col-sm-6">
             <a href="{{ Request::url() }}/create"><span class="glyphicon glyphicon-plus"></span> Добавить товар</a>
+            <div class="purchase-price">
+                <h3><span>{{ $purchase->purchase_price }}</span> р. - Сумма закупки</h3>
+            </div>
+            <!-- /.purchase-price -->
+
+            @if ($purchase->link)
+                <a class="btn btn-default btn-info purchase__link" href="{{ $purchase->link }}">Открыть товар</a>
+            @endif
         </div>
         <!-- /.col-sm-6 -->
     </div>
@@ -99,5 +115,10 @@
 @section('script')
     <script type="text/javascript">
         $('#good_id').select2();
+
+        $('#quantity, #price').change(function() {
+            var sum = $('#quantity').val() * $('#price').val();
+            $('.purchase-price span').html(sum);
+        });
     </script>
 @endsection

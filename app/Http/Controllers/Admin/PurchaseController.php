@@ -48,7 +48,7 @@ class PurchaseController extends Controller
     {
         $this->validate($request, [
             'good_id' => 'required|integer',
-            'price' => 'required|Numeric',
+            'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
             'quantity' => 'required|integer',
             'purchase_date' => 'required|date',
         ]);
@@ -57,6 +57,7 @@ class PurchaseController extends Controller
         $purchase->good_id = $request->good_id;
         $purchase->price = $request->price;
         $purchase->quantity = $request->quantity;
+        $purchase->link = $request->link;
         $purchase->purchase_date = $request->purchase_date;
         if ($request->departure_date != ""){
             $purchase->departure_date = $request->departure_date;
@@ -115,7 +116,7 @@ class PurchaseController extends Controller
     {
         $this->validate($request, [
             'good_id' => 'required|integer',
-            'price' => 'required|Numeric',
+            'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
             'quantity' => 'required|integer',
             'purchase_date' => 'required|date',
         ]);
@@ -123,6 +124,7 @@ class PurchaseController extends Controller
         $purchase->good_id = $request->good_id;
         $purchase->price = $request->price;
         $purchase->quantity = $request->quantity;
+        $purchase->link = $request->link;
         $purchase->purchase_date = $request->purchase_date;
         if ($request->departure_date != ""){
             $purchase->departure_date = $request->departure_date;

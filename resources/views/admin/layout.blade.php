@@ -34,24 +34,24 @@
 
 <body>
 
-<div class="navmenu navmenu-default navmenu-fixed-left">
-    <a class="navmenu-brand" href="#">Mimi Home</a>
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+    <a class="navmenu-brand visible-md visible-lg" href="#">Mimi Home</a>
     @include('admin.partials.sidebar_menu')
 </div>
-
-<div class="canvas">
-    <div class="navbar navbar-default navbar-fixed-top">
-        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
-
-    <div class="container">
-        @yield('content')
-    </div><!-- /.container -->
+<div class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg">
+    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Mimi Home</a>
 </div>
+
+<div class="container">
+    @yield('content')
+</div>
+<!-- /.container -->
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

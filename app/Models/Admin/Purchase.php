@@ -10,6 +10,7 @@ class Purchase extends Model
         'good_id',
         'price',
         'quantity',
+        'link',
         'purchase_date',
         'departure_date',
         'arrival_date',
@@ -21,5 +22,13 @@ class Purchase extends Model
     public function good()
     {
         return $this->belongsTo('App\Models\Admin\Good');
+    }
+
+    /**
+     * Общая сумма закупок
+     * @return mixed
+     */
+    public function getPurchasePriceAttribute() {
+        return $this->quantity * $this->price;
     }
 }
