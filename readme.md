@@ -82,7 +82,7 @@ dashboard at `/admin`
 ### Files
 
 - controllers: `app/Http/Controllers/`
-- routes: `app/Http/routes.php` (To see all defined routes and corresponding controller methods use `php artisan route:list` console command)
+- routes: `routes/routes.php` (To see all defined routes and corresponding controller methods use `php artisan route:list` console command)
 - main config `config/app.php`,
 - logs `storage/logs/`
 - docs in the `docs` folder
