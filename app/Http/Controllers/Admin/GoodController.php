@@ -20,6 +20,7 @@ class GoodController extends Controller
     {
         $goods = Good::with('category')
             ->active()
+            ->orderBy('name', 'asc')
             ->paginate(20);
 
         $categories = Category::all();
@@ -202,6 +203,7 @@ class GoodController extends Controller
         $goods = Good::with('category')
             ->where('category_id', $id)
             ->active()
+            ->orderBy('name', 'asc')
             ->paginate(20);
 
         $categories = Category::all();
@@ -219,6 +221,7 @@ class GoodController extends Controller
 
         $goods = Good::with('category')
             ->nonActive()
+            ->orderBy('name', 'asc')
             ->paginate(20);
 
         $categories = Category::all();
