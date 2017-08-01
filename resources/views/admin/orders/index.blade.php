@@ -24,7 +24,7 @@
                 <th>Клиент</th>
                 <th>Дата</th>
                 <th>Предоплата</th>
-                <th>Дата отдачи</th>
+                <th>Место отдачи</th>
                 <th style="width: 1%;">Просмотр</th>
                 <th style="">Удалить</th>
             </tr>
@@ -33,7 +33,7 @@
             @foreach($orders as $order)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $order->date }}</td>
+                    <td>{{ \Carbon\Carbon::parse($purchase->date)->format('d.m.Y') }}</td>
                     <td>{{ $order->client->name }}</td>
                     <td>{{ $order->prepaid_amount }}</td>
                     <td>{{ $order->issue_place }}</td>

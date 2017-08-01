@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
@@ -19,6 +20,7 @@ class Purchase extends Model
         'updated_at'
     ];
 
+
     public function good()
     {
         return $this->belongsTo('App\Models\Admin\Good');
@@ -31,4 +33,15 @@ class Purchase extends Model
     public function getPurchasePriceAttribute() {
         return $this->quantity * $this->price;
     }
+
+    /**
+     * @param string $dateFormat
+     */
+    public function getPurchaseDateFormatAttribute()
+    {
+        //$this->dateFormat =  Carbon::parse($dateFormat)->format('d.m.Y');
+        //return Carbon::parse($this->purchase_date)->format('d.m.Y');
+        return $this->quantity;
+    }
+
 }

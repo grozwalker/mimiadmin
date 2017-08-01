@@ -34,13 +34,13 @@
             @foreach($purchases as $purchase)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $purchase->purchase_date }}</td>
+                    <td>{{ \Carbon\Carbon::parse($purchase->purchase_date)->format('d.m.Y') }}</td>
                     <td>{{ $purchase->good->name }}</td>
                     <td>{{ $purchase->quantity }}</td>
                     <td>{{ $purchase->price }}</td>
-                    <td>{{ $purchase->departure_date }}</td>
-                    <td>{{ $purchase->buyer_protection }}</td>
-                    <td>{{ $purchase->arrival_date }}</td>
+                    <td>{{ \Carbon\Carbon::parse($purchase->departure_date)->format('d.m.Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($purchase->buyer_protection)->format('d.m.Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($purchase->arrival_date)->format('d.m.Y') }}</td>
                     <td><a href="/admin/purchase/{{ $purchase->id }}/edit">
                             Просмотр <span class="glyphicon glyphicon-search"></span>
                         </a></td>
