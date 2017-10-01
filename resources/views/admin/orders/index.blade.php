@@ -33,12 +33,12 @@
             @foreach($orders as $order)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ \Carbon\Carbon::parse($purchase->date)->format('d.m.Y') }}</td>
-                    <td>{{ $order->client->name }}</td>
+                    <td>{{ $order->client->name }} {{ $order->client->surname }}</td>
+                    <td>{{ \Carbon\Carbon::parse($order->date)->format('d.m.Y') }}</td>
                     <td>{{ $order->prepaid_amount }}</td>
                     <td>{{ $order->issue_place }}</td>
                     <td>
-                        <a class="btn btn-info" href="/admin/clients/{{ $order->id }}/edit">
+                        <a class="btn btn-info" href="/admin/orders/{{ $order->id }}/edit">
                             Просмотр <span class="glyphicon glyphicon-search"></span>
                         </a>
                     </td>

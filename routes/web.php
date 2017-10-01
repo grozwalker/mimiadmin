@@ -63,6 +63,7 @@ Route::group([
     ]);
 
     // Товары
+    Route::get('/goods/get-price', ['as' => 'goods.get-price','uses' => 'Admin\GoodController@getGoodPrice']);
     Route::resource('/goods', 'Admin\GoodController', [
         'as' => 'admin.goods',
         'names' => [
@@ -102,12 +103,15 @@ Route::group([
     ]);
 
     // Заказы
+    Route::post('/orders/add-good', ['as' => 'orders.add-good', 'uses' => 'Admin\OrderController@addGood']);
     Route::resource('/orders', 'Admin\OrderController', [
         'as' => 'admin.orders',
         'names' => [
-            'update' => 'orders.update',
-            'store' => 'orders.store',
-            'destroy' => 'orders.destroy',
+            'index'     => 'orders.index',
+            'update'    => 'orders.update',
+            'store'     => 'orders.store',
+            'edit'     => 'orders.edit',
+            'destroy'   => 'orders.destroy'
         ]
     ]);
 

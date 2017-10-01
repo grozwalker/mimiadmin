@@ -31,7 +31,7 @@ class PurchaseController extends Controller
     {
         $purchase = new Purchase();
 
-        $goodsList = $this->getGoodsList();
+        $goodsList = Good::getGoodsList();
 
         $good_id = null;
 
@@ -98,7 +98,7 @@ class PurchaseController extends Controller
      */
     public function edit(Purchase $purchase)
     {
-        $goodsList = $this->getGoodsList();
+        $goodsList = Good::getGoodsList();
         $good_id = $purchase->good->id;
 
         return view('admin.purchases.view', compact('purchase', 'goodsList', 'good_id'));
@@ -163,10 +163,12 @@ class PurchaseController extends Controller
     /**
      *
      */
-    private function getGoodsList()
+    private function getCategoriesList()
     {
 
-        $categories = Category::with('goods')->get();
+        $categories = Category::get();
+
+
 
         $goodsList = [];
         foreach ($categories as $category){

@@ -21,6 +21,11 @@ class Good extends Model
         return $this->hasMany('App\Models\Admin\Purchase');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Admin\Order', 'goods_orders');
+    }
+
     /**
      * Возвращаем все активные товары
      * @param $query
@@ -39,5 +44,22 @@ class Good extends Model
      */
     public function scopeNonActive($query){
         return $query->where('active', 0);
+    }
+
+    public static function getGoodsList()
+    {
+        $categories = Category::with('goods')->get();
+
+        $goodsList = [];
+        foreach ($categories as $category){
+            foreach ($category->goods as $good){
+                $goodsList[$category->name][$good->id] = $good->name;
+            }
+        }
+
+
+        $goodsList = array_merge(["" => ""], $goodsList);
+
+        return $goodsList;
     }
 }

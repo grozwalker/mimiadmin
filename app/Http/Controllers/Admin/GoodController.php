@@ -6,6 +6,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\Good;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Intervention\Image\ImageManagerStatic as Image;
 use File;
 
@@ -227,5 +228,17 @@ class GoodController extends Controller
         $categories = Category::all();
 
         return view('admin.goods.index', compact('goods', 'categories'));
+    }
+
+    public function getGoodPrice()
+    {
+        $goodId = Input::get('id');
+        if (empty($goodId)) {
+            return 0;
+        }
+
+        $goodPrice = Good::find($goodId)->price;
+
+        return $goodPrice;
     }
 }
