@@ -97,8 +97,6 @@ class OrderController extends Controller
 
         $clientsList = $this->getClientsList();
 
-        $goods = Good::all()->pluck('name', 'id');
-
         $categoriesList = $this->getCategoryList();
 
         $goodsList = Good::getGoodsList();
@@ -108,7 +106,6 @@ class OrderController extends Controller
                 'order',
                 'clientsList',
                 'client_id',
-                'goods',
                 'categoriesList',
                 'goodsList'
             ]));
@@ -140,9 +137,13 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        if ($order->delete()) {
+            return redirect('admin/orders')->with('success', 'Заказ успешно удален');
+        } else {
+            return redirect('admin/orders')->with('error', 'Произошла ошибка при удалении заказа. Пожалуйста, попробуйте позже');
+        }
     }
 
 
@@ -170,7 +171,18 @@ class OrderController extends Controller
 
         $order = Order::find($inputs['order_id']);
 
-        $order->goods()->attach($inputs['good_id']);
+        $order->goods()->attach($inputs['good_id'], ['count' => $inputs['quantity'], 'order_price' => $inputs['price']]);
+
+        return redirect()->back();
+    }
+
+    public function deleteGood()
+    {
+        $inputs = Input::all();
+
+        $order = Order::find($inputs['order_id']);
+
+        $order->goods()->detach($inputs['good_id']);
 
         return redirect()->back();
     }

@@ -20,6 +20,8 @@ class Order extends Model
 
     public function goods()
     {
-        return $this->belongsToMany('App\Models\Admin\Good', 'goods_orders');
+        return $this->belongsToMany('App\Models\Admin\Good', 'goods_orders')
+            ->withPivot('order_price', 'count')
+    	    ->withTimestamps();
     }
 }

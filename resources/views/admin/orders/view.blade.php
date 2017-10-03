@@ -16,14 +16,14 @@
 
     <a href="/admin/clients/create"><span class="glyphicon glyphicon-plus"></span> Добавить клиента</a>
 
+    <div class="col-sm-4">
+
     {!! Form::model(
     $order, [
     'route' => $order->id ? ['orders.update', $order->id] : ['orders.store'],
     'class' => 'form-horizontal row',
     'method' => $order->id ? 'PUT' : 'POST',
     'files' => true]) !!}
-
-    <div class="col-sm-6">
 
         <h2>Информация о заказе</h2>
 
@@ -46,7 +46,7 @@
         <div class="form-group {{ $errors->has('prepaid_amount') ? 'has-error' : '' }}">
             {!! Form::label('prepaid_amount', 'Сумма предоплаты', ['class' => 'col-sm-12 col-xs-12'])  !!}
             <div class="col-sm-12 col-xs-12">
-                {!! Form::number('prepaid_amount', $order->prepaid_amount, ['class' => 'form-control'])  !!}
+                {!! Form::number('prepaid_amount', !empty($order->prepaid_amount) ? $order->prepaid_amount : 0, ['class' => 'form-control'])  !!}
                 {!! $errors->first('prepaid_amount', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -58,39 +58,6 @@
                 {!! $errors->first('issue_place', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
-
-    </div>
-    <!-- /.col-sm-6 -->
-
-    <div class="col-sm-6">
-        <h2>Информация о товарах</h2>
-        <div class="order-goods">
-
-            <table>
-                <thead>
-                    <th>№</th>
-                    <th>Наименование</th>
-                    <th>Количество</th>
-                    <th>Цена</th>
-                    <th>Сумма</th>
-                </thead>
-            @foreach($goods as $good)
-                <tr>
-                    <td></td>
-                    <td>{{ $good->name }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            @endforeach
-            </table>
-            
-        </div>
-        <a href="#" class="btn btn-success add-good" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span></a>
-    </div>
-    <!-- /.col-sm-6 -->
-
-    <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
                 <div class="col-sm-10">
@@ -100,10 +67,56 @@
             </div>
         </div>
         <!-- /.col-sm-12 -->
+
+        {!! Form::close() !!}
+    </div>
+    <!-- /.col-sm-6 -->
+
+    <div class="col-sm-8">
+        <h2>Информация о товарах</h2>
+        <div class="order-goods">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <th>№</th>
+                    <th>Наименование</th>
+                    <th>Количество</th>
+                    <th>Цена</th>
+                    <th>Сумма</th>
+                    <th></th>
+                </thead>
+                @if(count($order->goods) > 0)
+                    @foreach($order->goods as $good)
+                        <tr>
+                            <td>{{ $loop->index + 1}}</td>
+                            <td>{{ $good->name }}</td>
+                            <td>{{ $good->pivot->count }}</td>
+                            <td>{{ $good->pivot->order_price }}</td>
+                            <td>{{ $good->pivot->count * $good->pivot->order_price }}</td>
+                            <td>
+                                {!!  Form::open([ 'method'  => 'delete', 'route' => [ 'orders.delete-good' ] ]) !!}
+
+                                    {!! Form::number('order_id', $order->id, ['id' => 'order_id', 'class' => 'form-control hidden'])  !!}
+                                    {!! Form::number('good_id', $good->id, ['id' => 'order_id', 'class' => 'form-control hidden'])  !!}
+                                    <button type="submit" id="delete-task-{{ $good->id }}" class="btn btn-danger">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </button>
+
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+            </table>
+
+        </div>
+        <a href="#" class="btn btn-success add-good {{ empty($order->id) ? 'disabled' : '' }}" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <!-- /.col-sm-6 -->
+
+    <div class="row">
     </div>
     <!-- /.row -->
 
-    {!! Form::close() !!}
 
 
     <!-- Modal -->
@@ -124,7 +137,7 @@
             'class' => 'form-horizontal form_add-good',
             ]) !!}
 
-                {!! Form::number('order_id', $order->id, ['id' => 'order_id', 'class' => 'form-control'])  !!}
+                {!! Form::number('order_id', $order->id, ['id' => 'order_id', 'class' => 'form-control hidden'])  !!}
 
 
                 <div class="form-group {{ $errors->has('good_id') ? 'has-error' : '' }}">

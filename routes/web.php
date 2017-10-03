@@ -104,6 +104,7 @@ Route::group([
 
     // Заказы
     Route::post('/orders/add-good', ['as' => 'orders.add-good', 'uses' => 'Admin\OrderController@addGood']);
+    Route::delete('/orders/delete-good', ['as' => 'orders.delete-good', 'uses' => 'Admin\OrderController@deleteGood']);
     Route::resource('/orders', 'Admin\OrderController', [
         'as' => 'admin.orders',
         'names' => [
