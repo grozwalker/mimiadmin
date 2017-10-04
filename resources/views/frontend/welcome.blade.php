@@ -109,4 +109,5 @@
             </div>
         </div>
     </body>
+    @include('frontend.partials.widget')
 </html>
