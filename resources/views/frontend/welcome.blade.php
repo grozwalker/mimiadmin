@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Mimi Home - магазинчик милых вещей</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
@@ -109,5 +109,7 @@
             </div>
         </div>
     </body>
-    @include('frontend.partials.widget')
+    @if (env('enviroment') == 'production')
+        @include('frontend.partials.widget')
+    @endif
 </html>
