@@ -63,12 +63,10 @@ class GoodController extends Controller
         $good = new Good();
         $good->name = $request->name;
         $good->category_id = $request->category_id;
-        $good->category_id = $request->category_id;
         $good->price = $request->price;
         $good->active = $request->active == 1 ? true : false;;
         $good->have_photo = $request->have_photo == 1 ? true : false;;
         $good->description = $request->description;
-        $good->vk_link = $request->vk_link;
         $good->featured = $request->featured == 1 ? true : false;;
         $good->save();
 

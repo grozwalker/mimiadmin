@@ -45,14 +45,6 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('vk_link') ? 'has-error' : '' }}">
-        {!! Form::label('vk_link', 'Ссылка ВК', ['class' => 'col-sm-12'])  !!}
-        <div class="col-sm-12">
-            {!! Form::text('vk_link', $good->vk_link, ['class' => 'form-control'])  !!}
-            {!! $errors->first('vk_link', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-
     <div class="form-group {{ $errors->has('img') ? 'has-error' : '' }}">
         {!! Form::label('img', 'Изображение', ['class' => 'col-sm-12 col-xs-12'])  !!}
         <div class="col-sm-12 col-xs-12">

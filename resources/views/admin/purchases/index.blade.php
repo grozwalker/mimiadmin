@@ -14,6 +14,7 @@
             {{ session('success') }}
         </div>
     @endif
+    <a href="/admin/purchase/create"><span class="glyphicon glyphicon-plus"></span> Добавить Закупку</a>
     <div class="table-responsive">
         <table class="table table-responsive table-hover">
             <thead>
@@ -23,6 +24,7 @@
                 <th>Товар</th>
                 <th>Количество</th>
                 <th>Цена закупки</th>
+                <th>Всего</th>
                 <th>Дата отправки</th>
                 <th>Защита покупателя</th>
                 <th>Дата прихода</th>
@@ -38,6 +40,7 @@
                     <td>{{ $purchase->good->name }}</td>
                     <td>{{ $purchase->quantity }}</td>
                     <td>{{ $purchase->price }}</td>
+                    <td>{{ $purchase->quantity * $purchase->price }}</td>
                     <td>{{ \Carbon\Carbon::parse($purchase->departure_date)->format('d.m.Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($purchase->buyer_protection)->format('d.m.Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($purchase->arrival_date)->format('d.m.Y') }}</td>
