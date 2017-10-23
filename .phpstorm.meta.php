@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-06-25.
+    * Generated on 2017-10-21.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -124,6 +124,10 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'BackupManager\Filesystems\FilesystemProvider' instanceof \BackupManager\Filesystems\FilesystemProvider,
+            'BackupManager\Databases\DatabaseProvider' instanceof \BackupManager\Databases\DatabaseProvider,
+            'BackupManager\Compressors\CompressorProvider' instanceof \BackupManager\Compressors\CompressorProvider,
+            'BackupManager\ShellProcessing\ShellProcessor' instanceof \BackupManager\ShellProcessing\ShellProcessor,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
@@ -243,6 +247,10 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'BackupManager\Filesystems\FilesystemProvider' instanceof \BackupManager\Filesystems\FilesystemProvider,
+            'BackupManager\Databases\DatabaseProvider' instanceof \BackupManager\Databases\DatabaseProvider,
+            'BackupManager\Compressors\CompressorProvider' instanceof \BackupManager\Compressors\CompressorProvider,
+            'BackupManager\ShellProcessing\ShellProcessor' instanceof \BackupManager\ShellProcessing\ShellProcessor,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
@@ -362,6 +370,10 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'BackupManager\Filesystems\FilesystemProvider' instanceof \BackupManager\Filesystems\FilesystemProvider,
+            'BackupManager\Databases\DatabaseProvider' instanceof \BackupManager\Databases\DatabaseProvider,
+            'BackupManager\Compressors\CompressorProvider' instanceof \BackupManager\Compressors\CompressorProvider,
+            'BackupManager\ShellProcessing\ShellProcessor' instanceof \BackupManager\ShellProcessing\ShellProcessor,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
@@ -481,6 +493,10 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'BackupManager\Filesystems\FilesystemProvider' instanceof \BackupManager\Filesystems\FilesystemProvider,
+            'BackupManager\Databases\DatabaseProvider' instanceof \BackupManager\Databases\DatabaseProvider,
+            'BackupManager\Compressors\CompressorProvider' instanceof \BackupManager\Compressors\CompressorProvider,
+            'BackupManager\ShellProcessing\ShellProcessor' instanceof \BackupManager\ShellProcessing\ShellProcessor,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,

@@ -34,9 +34,6 @@ class Purchase extends Model
         return $this->quantity * $this->price;
     }
 
-    /**
-     * @param string $dateFormat
-     */
     public function getPurchaseDateFormatAttribute()
     {
         //$this->dateFormat =  Carbon::parse($dateFormat)->format('d.m.Y');
