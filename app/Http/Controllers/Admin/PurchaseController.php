@@ -48,7 +48,7 @@ class PurchaseController extends Controller
     {
         $this->validate($request, [
             'good_id' => 'required|integer',
-            'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
+            'price' => 'required|regex:/^\d*(\.\d{1,4})?$/',
             'quantity' => 'required|integer',
             'purchase_date' => 'required|date',
         ]);
@@ -116,7 +116,7 @@ class PurchaseController extends Controller
     {
         $this->validate($request, [
             'good_id' => 'required|integer',
-            'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
+            'price' => 'required|regex:/^\d*(\.\d{1,4})?$/',
             'quantity' => 'required|integer',
             'purchase_date' => 'required|date',
         ]);

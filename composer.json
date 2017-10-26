@@ -12,7 +12,9 @@
         "barryvdh/laravel-debugbar": "^2.3",
         "intervention/image": "^2.3",
         "backup-manager/laravel": "^1.1",
-        "grozwalker/crud": "^1.0"
+        "grozwalker/crud": "^1.0",
+        "doctrine/dbal": "^2.6"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
