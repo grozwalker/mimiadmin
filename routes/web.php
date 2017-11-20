@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.welcome');
-});
+Route::get('/', ['as' => 'main.index', 'uses' => 'Frontend\MainController@index']);
 
 //Auth::routes();
 

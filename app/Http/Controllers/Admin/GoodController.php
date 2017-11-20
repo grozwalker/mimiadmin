@@ -7,6 +7,7 @@ use App\Models\Admin\Good;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManagerStatic as Image;
 use File;
 
@@ -189,7 +190,20 @@ class GoodController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $good = Good::findOrFail($id);
+
+        if ($good->purchases->count() > 0) {
+            $message = 'Данный товар удалять нельзя. Он привязан к закупкам. 
+            Чтобы узнавать к каким именно - образайтесь к админу';
+            return Redirect::back()
+                ->withErrors($message);
+        }
+
+        $good->delete();
+
+        return Redirect::back()
+            ->withSuccess('Товар "' . $good->name .  '" успешно удален!');
     }
 
     /**
