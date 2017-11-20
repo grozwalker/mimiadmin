@@ -10,6 +10,6 @@ class MainController extends CrudController
 {
     public function index()
     {
-        return view('frontend.main.index');
+        return view('frontend.welcome');
     }
 }

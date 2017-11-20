@@ -61,6 +61,8 @@
 <script src="/js/bootstrap/jasny-bootstrap.min.js"></script>
 <script src="/js/bootstrap/docs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="/assets/dashboard/vendor/dropzone/dist/dropzone.js"></script>
+<script src="/assets/js/gallery.js"></script>
 
 @yield('script')
 

@@ -2,6 +2,17 @@
 
 @section('content')
     <h1 class="page-header">Товары</h1>
+
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <strong>Внимание!</strong> {{ $errors->first() }}
+        </div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row active-goods">
         <div class="col-sm-12">
             <a href="{{ route('goods.index') }}" class="btn {{ Route::getCurrentRoute()->getName() == 'goods.index' ? 'btn-success' : 'btn-info' }} all-goods">Активные</a>

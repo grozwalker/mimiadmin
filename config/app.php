@@ -182,6 +182,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         BackupManager\Laravel\Laravel5ServiceProvider::class,
+        \App\Providers\FormServiceProvider::class,
 
         //Debug
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,

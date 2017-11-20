@@ -4,6 +4,38 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Admin\Good
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $category_id
+ * @property float $price
+ * @property int $active
+ * @property int $have_photo
+ * @property string $description
+ * @property string $img
+ * @property int $featured
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Admin\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Order[] $orders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Purchase[] $purchases
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good active()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good nonActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereFeatured($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereHavePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereImg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Good whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Good extends Model
 {
     protected $fillable = ['name', 'price'];

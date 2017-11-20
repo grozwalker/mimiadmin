@@ -100,12 +100,13 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ( $category->goods->count() > 0 ){
-            $message = 'Данную категорию"' + 'test' + '" удалять нельзя. В ней есть товары';
+            $message = 'Данную категорию"' . $category->name . '" удалять нельзя. В ней есть товары';
             return Redirect::back()
                 ->withErrors($message);
         }
         $category->delete();
 
-        return Redirect::back();
+        return Redirect::back()
+            ->withSuccess('Категория "' . $category->name .  '" успешно удалена');
     }
 }

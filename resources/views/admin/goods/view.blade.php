@@ -60,6 +60,11 @@
             {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
+
+    @if($good->id)
+        {!! Form::bsGallery('Фотографии', $good->id, 'route') !!}
+    @endif
+
     <div class="form-group">
         <div class="funkyradio col-sm-2">
             <div class="row">
